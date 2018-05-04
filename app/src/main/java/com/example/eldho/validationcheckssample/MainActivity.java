@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             Log.d("beforeTextChanged:", "");
-
+// removes the error message when starts typing
             nameTIL.setError("");
             emailTIL.setError("");
             password1TIL.setError("");
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private boolean validateEmail() {
         emailID = emailTIL.getEditText().getText().toString().trim();
-        if (!(Patterns.EMAIL_ADDRESS.matcher(emailID).matches())) {// Email validation
+        if (!(Patterns.EMAIL_ADDRESS.matcher(emailID).matches())) {
             emailTIL.setError("Enter a valid Email Address");
             return false;
         } else {
