@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             emailTIL.setError("Enter a valid Email Address");
             return false;
         } else {
-            nameTIL.setError(null);
+            emailTIL.setError(null);
             return true;
         }
     }
@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         else {
-            nameTIL.setError(null);
+            password1TIL.setError(null);
+            password2TIL.setError(null);
             return true;
         }
 
