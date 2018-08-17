@@ -11,7 +11,12 @@
     <style name="TextLabel" parent="AppTheme">
         <!-- Hint color and label color in FALSE state -->
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
+
+        <!--for change bottom line color-->
+        <item name="colorControlNormal">#c5c5c5</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
+
 
     <style name="error_appearance" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/red</item>

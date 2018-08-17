@@ -17,12 +17,15 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import com.hbb20.CountryCodePicker;
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
-    private TextInputLayout nameTIL,emailTIL,password1TIL,password2TIL;
-    String name,emailID,password1,password2;
+    private TextInputLayout nameTIL,emailTIL,password1TIL,password2TIL,phoneNoTIL;
+    String name,emailID,password1,password2,phoneNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
         emailTIL = findViewById(R.id.email);
         password1TIL = findViewById(R.id.password1);
         password2TIL = findViewById(R.id.password2);
+        phoneNoTIL = findViewById(R.id.phoneNoTIL);
 
         nameTIL.getEditText().addTextChangedListener(watch);
         emailTIL.getEditText().addTextChangedListener(watch);
+        phoneNoTIL.getEditText().addTextChangedListener(watch);
         password1TIL.getEditText().addTextChangedListener(watch);
         password2TIL.getEditText().addTextChangedListener(watch);
     }
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 // removes the error message when starts typing
             nameTIL.setError("");
             emailTIL.setError("");
+            phoneNoTIL.setError("");
             password1TIL.setError("");
             password2TIL.setError("");
 
@@ -85,6 +91,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean validatePhoneNumber() {
+        CountryCodePicker ccp;
+        ccp = findViewById(R.id.ccpID);
+        ccp.registerCarrierNumberEditText(phoneNoTIL.getEditText());
+        phoneNo = ccp.getFullNumberWithPlus();
+        if (!(ccp.isValidFullNumber()))
+        {
+            phoneNoTIL.setError("Enter valid phone number");
+            return false;
+        } else {
+            phoneNoTIL.setError(null);
+            return true;
+        }
+    }
+
     private boolean validatePassword(){
         password1 = password1TIL.getEditText().getText().toString().trim();
         password2 = password2TIL.getEditText().getText().toString().trim();
@@ -110,10 +131,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submit(View view) {
-        if (!(validateEmail() & validateName() & validatePassword())){
+        if (!(validateEmail() & validateName() & validatePassword()) & validatePhoneNumber()){
             return;
         }
         else {
+            Log.d(TAG, "submit: "+phoneNo+"\n"+emailID+"\n"+password2+"\n"+name);
             Toast.makeText(this, "All Validation checks successful", Toast.LENGTH_SHORT).show();
         }
     }

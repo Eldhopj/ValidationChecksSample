@@ -10,7 +10,7 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:textColorHint="@color/colorPrimary"
         android:theme="@style/TextLabel"
         app:errorEnabled="true"
@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
+            android:imeOptions="actionNext"
             android:inputType="text"
             android:paddingStart="8dp" />
 
@@ -97,11 +98,47 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/ccpID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:theme="@style/TextLabel"
+        app:ccp_autoDetectCountry="true"
+        app:ccp_showFlag="true"
+        app:ccp_showNameCode="false"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneNoTIL"
+        app:layout_constraintEnd_toStartOf="@+id/phoneNoTIL"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/phoneNoTIL" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/phoneNoTIL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ccpID"
+        app:layout_constraintTop_toBottomOf="@+id/password2">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Phone Number"
+            android:imeOptions="actionNext"
+            android:inputType="phone" />
+    </android.support.design.widget.TextInputLayout>
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:onClick="submit"
